@@ -1,0 +1,171 @@
+import tkinter as tk
+
+
+class App:
+    def __init__(self, master):
+        self.master = master
+        master.title("Shoe Size Converter")
+        master.geometry("300x1000")
+        self.entries = []
+
+        #USA WOMAN TO EURO WOMAN
+        self.usaWomenLabel = tk.Label(master, text = "Enter an American Female Shoe Size")
+        self.usaWomenLabel.pack()
+
+        self.usaWomanEntry = tk.Entry(master, width=30)
+        self.usaWomanEntry.pack(padx=10,pady=10)
+
+        self.usaWomanButton = tk.Button(master, text="Convert to European", command=self.usaWomanAdd)
+        self.usaWomanButton.pack()
+
+        self.usaWomanListBox = tk.Listbox(master, width=30, height=3)
+        self.usaWomanListBox.pack(padx=10, pady=10)
+
+        self.usaWomanSaveButton = tk.Button(master, text="Show All Conversions", command=self.usaWomanSaveFunction)
+        self.usaWomanSaveButton.pack(padx=10, pady=5)
+
+        self.usaWomanClearButton = tk.Button(master, text="Clear", command=self.usaWomanClearFunction)
+        self.usaWomanClearButton.pack(padx=10, pady=10)
+
+        #EURO WOMAN TO USA WOMAN
+        self.euroWomenLabel = tk.Label(master, text="Enter an European Female Shoe Size")
+        self.euroWomenLabel.pack()
+
+        self.euroWomanEntry = tk.Entry(master, width=30)
+        self.euroWomanEntry.pack(padx=10, pady=10)
+
+        self.euroWomanButton = tk.Button(master, text="Convert to American", command=self.euroWomanAdd)
+        self.euroWomanButton.pack()
+
+        self.euroWomanListBox= tk.Listbox(master, width=30, height=3)
+        self.euroWomanListBox.pack(padx=10, pady=10)
+
+        self.euroWomanSaveButton = tk.Button(master, text="Show All Conversions", command=self.euroWomanSaveFunction)
+        self.euroWomanSaveButton.pack(padx=10, pady=5)
+
+        self.euroWomanClearButton = tk.Button(master, text="Clear", command=self.euroWomanClearFunction)
+        self.euroWomanClearButton.pack(padx=10, pady=10)
+
+        # USA MEN TO EURO MEN
+        self.usaMenLabel = tk.Label(master, text="Enter an American Male Shoe Size")
+        self.usaMenLabel.pack()
+
+        self.usaMenEntry = tk.Entry(master, width=30)
+        self.usaMenEntry.pack(padx=10, pady=10)
+
+        self.usaMenButton = tk.Button(master, text="Convert to European", command=self.usaMenAdd)
+        self.usaMenButton.pack()
+
+        self.usaMenListBox = tk.Listbox(master, width=30, height=3)
+        self.usaMenListBox.pack(padx=10, pady=10)
+
+        self.usaMenSaveButton = tk.Button(master, text="Show All Conversions", command=self.usaMenSaveFunction)
+        self.usaMenSaveButton.pack(padx=10, pady=5)
+
+        self.usaMenClearButton = tk.Button(master, text="Clear", command=self.usaMenClearFunction)
+        self.usaMenClearButton.pack(padx=10, pady=10)
+
+        # EURO MEN TO USA MEN
+        self.euroMenLabel = tk.Label(master, text="Enter an European Male Shoe Size")
+        self.euroMenLabel.pack()
+
+        self.euroMenEntry = tk.Entry(master, width=30)
+        self.euroMenEntry.pack(padx=10, pady=10)
+
+        self.euroMenButton = tk.Button(master, text="Convert to American", command=self.euroMenAdd)
+        self.euroMenButton.pack()
+
+        self.euroMenListBox = tk.Listbox(master, width=30, height=3)
+        self.euroMenListBox.pack(padx=10, pady=10)
+
+        self.euroMenSaveButton = tk.Button(master, text="Show All Conversions", command=self.euroMenSaveFunction)
+        self.euroMenSaveButton.pack(padx=10, pady=5)
+
+        self.euroMenClearButton = tk.Button(master, text="Clear", command=self.euroMenClearFunction)
+        self.euroMenClearButton.pack(padx=10, pady=10)
+
+
+    #USA WOMAN TO EURO WOMAN FUNCTIONS
+    def usaWomanAdd(self):
+        usaWoman1 = int(self.usaWomanEntry.get())
+        euroWoman1 = usaWoman1 + 30
+        self.usaWomanListBox.insert(tk.END, "USA Woman " + str(usaWoman1) + " = EU Woman " + str(euroWoman1))
+        self.entries.append("USA Woman " + str(usaWoman1) + " = EU Woman " + str(euroWoman1))
+        self.usaWomanEntry.delete(0, tk.END)
+
+    def usaWomanClearFunction(self):
+        self.usaWomanListBox.delete(0, tk.END)
+        self.entries = []
+
+    def usaWomanSaveFunction(self):
+        window = tk.Toplevel(self.master)
+        text = tk.Text(window)
+        text.pack()
+        for usaWomanEntry in self.entries:
+            text.insert(tk.END, usaWomanEntry + "\n")
+
+    # EURO WOMAN TO USA WOMAN FUNCTIONS
+
+    def euroWomanAdd(self):
+        euroWoman2 = int(self.euroWomanEntry.get())
+        usaWoman2 = euroWoman2 - 30
+        self.euroWomanListBox.insert(tk.END, "EU Woman " + str(euroWoman2) + " = USA Woman " + str(usaWoman2))
+        self.entries.append("EU Woman " + str(euroWoman2) + " = USA Woman " + str(usaWoman2))
+        self.euroWomanEntry.delete(0, tk.END)
+
+    def euroWomanClearFunction(self):
+        self.euroWomanListBox.delete(0, tk.END)
+        self.entries = []
+
+    def euroWomanSaveFunction(self):
+        window = tk.Toplevel(self.master)
+        text = tk.Text(window)
+        text.pack()
+        for euroWomanEntry in self.entries:
+            text.insert(tk.END, euroWomanEntry + "\n")
+
+    #USA MEN TO EURO MEN FUNCTIONS
+    def usaMenAdd(self):
+        usaMen1 = int(self.usaMenEntry.get())
+        euroMen1 = usaMen1 + 33
+        self.usaMenListBox.insert(tk.END, "USA Men " + str(usaMen1) + " = EU Men " + str(euroMen1))
+        self.entries.append("USA Men " + str(usaMen1) + " = EU Men " + str(euroMen1))
+        self.usaMenEntry.delete(0, tk.END)
+
+    def usaMenClearFunction(self):
+        self.usaMenListBox.delete(0, tk.END)
+        self.entries = []
+
+    def usaMenSaveFunction(self):
+        window = tk.Toplevel(self.master)
+        text = tk.Text(window)
+        text.pack()
+        for usaMenEntry in self.entries:
+            text.insert(tk.END, usaMenEntry + "\n")
+
+    # EURO MEN TO USA MEN FUNCTIONS
+
+    def euroMenAdd(self):
+        euroMen2 = int(self.euroMenEntry.get())
+        usaMen2 = euroMen2 - 33
+        self.euroMenListBox.insert(tk.END, "EU Men " + str(euroMen2) + " = USA Men " + str(usaMen2))
+        self.entries.append("EU Men " + str(euroMen2) + " = USA Men " + str(usaMen2))
+        self.euroMenEntry.delete(0, tk.END)
+
+    def euroMenClearFunction(self):
+        self.euroMenListBox.delete(0, tk.END)
+        self.entries = []
+
+    def euroMenSaveFunction(self):
+        window = tk.Toplevel(self.master)
+        text = tk.Text(window)
+        text.pack()
+        for euroMenEntry in self.entries:
+            text.insert(tk.END, euroMenEntry + "\n")
+
+
+root = tk.Tk()
+app = App(root)
+root.mainloop()
+
+
